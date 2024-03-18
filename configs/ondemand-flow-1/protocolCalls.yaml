@@ -81,7 +81,7 @@ on_confirm:
   executed: false
   shouldRender: false
   config: "on_confirm"
-  nextRequest: "status"
+  nextRequest: "track"
   preRequest: "confirm"
   isCollapsed: false
   protocol:
@@ -98,13 +98,35 @@ on_confirm:
 #   protocol:
 #     $ref: ./protocolMapping.yaml#/protocol/on_update
 
+track:
+  type: "track"
+  executed: false
+  shouldRender: false
+  config: "track"
+  nextRequest: "on_track"
+  preRequest: "on_confirm"
+  isCollapsed: false
+  protocol:
+    $ref: ./protocolMapping.yaml#/protocol/track
+
+on_track:
+  type: "on_track"
+  executed: false
+  shouldRender: false
+  config: "on_track"
+  nextRequest: status
+  preRequest: "track"
+  isCollapsed: false
+  protocol:
+    $ref: ./protocolMapping.yaml#/protocol/on_track
+
 status:
   type: "status"
   executed: false
   shouldRender: false
   config: "status"
   nextRequest: "on_status"
-  preRequest: "on_confirm"
+  preRequest: "on_track"
   isCollapsed: false
   protocol:
     $ref: ./protocolMapping.yaml#/protocol/status

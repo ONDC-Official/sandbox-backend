@@ -49,7 +49,7 @@ personal_info_form:
     extractionPathReplaceWith: formData.bpp_id
     errorText: "Provider Id is required"
     required: true
-    summary: Provider Id is the uniqure id of the seller
+    summary: This refers to the unique id of the provider whose catalog items have been selected.
   - name: "Form Id"
     key: "formId"
     type: "select"

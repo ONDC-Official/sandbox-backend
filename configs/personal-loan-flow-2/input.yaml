@@ -17,7 +17,7 @@ search:
         STATIC_TERMS: "https://bap.credit.becknprotocol.io/personal-banking/loans/personal-loan"
     errorText: "Payment tags is required"
     required: true
-    summary: Vehicle category for which ticket needs to be booked
+    summary: Describes tags
 
 personal_info_form:
   - name: "BPP URI"
