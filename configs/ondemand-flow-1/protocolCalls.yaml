@@ -8,7 +8,7 @@ search:
   preRequest: null
   isCollapsed: false
   protocol:
-    $ref: ./protocolMapping.yaml#/protocol/status
+    $ref: ./protocolMapping.yaml#/protocol/search
 
 on_search:
   type: "on_search"
@@ -19,7 +19,7 @@ on_search:
   preRequest: "search"
   isCollapsed: false
   protocol:
-    $ref: ./protocolMapping.yaml#/protocol/status
+    $ref: ./protocolMapping.yaml#/protocol/on_search
 
 select:
   type: "select"
@@ -30,7 +30,7 @@ select:
   preRequest: "on_search"
   isCollapsed: false
   protocol:
-    $ref: ./protocolMapping.yaml#/protocol/status
+    $ref: ./protocolMapping.yaml#/protocol/select
 
 on_select:
   type: "on_select"
@@ -41,7 +41,7 @@ on_select:
   preRequest: "select"
   isCollapsed: false
   protocol:
-    $ref: ./protocolMapping.yaml#/protocol/status
+    $ref: ./protocolMapping.yaml#/protocol/on_select
 
 init:
   type: "init"
@@ -52,7 +52,7 @@ init:
   preRequest: "on_select"
   isCollapsed: false
   protocol:
-    $ref: ./protocolMapping.yaml#/protocol/status
+    $ref: ./protocolMapping.yaml#/protocol/init
 
 on_init:
   type: "on_init"
@@ -63,7 +63,7 @@ on_init:
   preRequest: "init"
   isCollapsed: false
   protocol:
-    $ref: ./protocolMapping.yaml#/protocol/status
+    $ref: ./protocolMapping.yaml#/protocol/on_init
 
 confirm:
   type: "confirm"
@@ -74,29 +74,29 @@ confirm:
   preRequest: "on_init"
   isCollapsed: false
   protocol:
-    $ref: ./protocolMapping.yaml#/protocol/status
+    $ref: ./protocolMapping.yaml#/protocol/confirm
 
 on_confirm:
   type: "on_confirm"
   executed: false
   shouldRender: false
   config: "on_confirm"
-  nextRequest: "on_update"
+  nextRequest: "status"
   preRequest: "confirm"
   isCollapsed: false
   protocol:
-    $ref: ./protocolMapping.yaml#/protocol/status
+    $ref: ./protocolMapping.yaml#/protocol/on_confirm
 
-on_update:
-  type: "on_update"
-  executed: false
-  shouldRender: false
-  config: "on_update"
-  nextRequest: "status"
-  preRequest: "on_confirm"
-  isCollapsed: false
-  protocol:
-    $ref: ./protocolMapping.yaml#/protocol/status
+# on_update:
+#   type: "on_update"
+#   executed: false
+#   shouldRender: false
+#   config: "on_update"
+#   nextRequest: "status"
+#   preRequest: "on_confirm"
+#   isCollapsed: false
+#   protocol:
+#     $ref: ./protocolMapping.yaml#/protocol/on_update
 
 status:
   type: "status"
@@ -104,7 +104,7 @@ status:
   shouldRender: false
   config: "status"
   nextRequest: "on_status"
-  preRequest: "on_update"
+  preRequest: "on_confirm"
   isCollapsed: false
   protocol:
     $ref: ./protocolMapping.yaml#/protocol/status
@@ -118,4 +118,4 @@ on_status:
   preRequest: "status"
   isCollapsed: false
   protocol:
-    $ref: ./protocolMapping.yaml#/protocol/status
+    $ref: ./protocolMapping.yaml#/protocol/on_status

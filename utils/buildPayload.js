@@ -1,17 +1,5 @@
-const fs = require("fs");
-const path = require("path");
-const yaml = require("js-yaml");
 const { v4: uuidv4 } = require("uuid");
 const logger = require("./logger");
-
-const getYamlConfig = (configName) => {
-  const yamlConfig = fs.readFileSync(
-    path.join(__dirname, "../", "configs", configName, "protocolMapping.yaml"),
-    "utf8"
-  );
-
-  return yamlConfig;
-};
 
 // function used inside eval function
 const buildTags = (tags) => {
