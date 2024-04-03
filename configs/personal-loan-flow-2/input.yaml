@@ -4,7 +4,7 @@ search:
     type: "text"
     errorText: "Vehicle category is required"
     required: true
-    summary: Loan category for which ticket needs to be booked
+    summary: This attribute refers to categorizing loans based on whether they are intended for personal use or are meant for invoices.
   - name: "Payment Tags"
     key: "paymentTagsSearch"
     type: "multiline"
@@ -17,7 +17,7 @@ search:
         STATIC_TERMS: "https://bap.credit.becknprotocol.io/personal-banking/loans/personal-loan"
     errorText: "Payment tags is required"
     required: true
-    summary: Vehicle category for which ticket needs to be booked
+    summary: Describes tags
 
 personal_info_form:
   - name: "BPP URI"

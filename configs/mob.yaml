@@ -52,6 +52,10 @@ flows:
     id: ondemand-flow-1
     sessionData:
       version: "2.0.0"
+      collectedBy: BPP
+      bankAccountNumber: "123456789"
+      virtualPaymentAddress: "adasd@okiciic"
+      bankCode: "fj3jf9ij3f02"
     input:
       $ref: ./configs/ondemand-flow-1/input.yaml
     protocol:

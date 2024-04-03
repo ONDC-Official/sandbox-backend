@@ -28,25 +28,33 @@ search:
 select:
   - name: "BPP URI"
     key: "bpp_uri"
-    type: "text"
+    type: "select"
+    extractionPath: "businessPayload[]{key: bpp_uri, value: bpp_uri}"
     error: "BPP URI is required"
     required: true
     summary: Vehicle category for which ticket needs to be booked
   - name: "BPP ID"
     key: "bpp_id"
-    type: "text"
+    type: "select"
+    extractionPath: "businessPayload[]{key: bpp_id, value: bpp_id}"
     error: "BPP ID is required"
     required: true
     summary: Vehicle category for which ticket needs to be booked
   - name: "Item id"
     key: "itemId"
-    type: "text"
+    type: "select"
+    extractionPath: "businessPayload[?(bpp_id === '${bpp_id}')].items[]{key: itemId, value: itemId}"
+    extractionPathReplace: "${bpp_id}"
+    extractionPathReplaceWith: formData.bpp_id
     errorText: "Item id is required"
     required: true
     summary: Vehicle category for which ticket needs to be booked
   - name: "Provider Id"
     key: "providerId"
-    type: "text"
+    type: "select"
+    extractionPath: "businessPayload[?(bpp_id === '${bpp_id}')].items[]{key: providerId, value: providerId}"
+    extractionPathReplace: "${bpp_id}"
+    extractionPathReplaceWith: formData.bpp_id
     errorText: "Provider Id is required"
     required: true
     summary: Vehicle category for which ticket needs to be booked
@@ -64,15 +72,10 @@ init:
     errorText: "Phone is required"
     required: true
     summary: Vehicle category for which ticket needs to be booked
-  - name: "Collected By"
-    key: "collectedBy"
-    type: "text"
-    errorText: "Collected By is required"
-    required: true
-    summary: Vehicle category for which ticket needs to be booked
   - name: "Payment Status"
     key: "paymentStatus"
     type: "select"
+    defaultValue: "NOT-PAID"
     defaultOptions:
       - key: "PAID"
         value: "PAID"
@@ -84,6 +87,7 @@ init:
   - name: "Payment Type"
     key: "paymentType"
     type: "select"
+    defaultValue: "ON-FULFILLMENT"
     defaultOptions:
       - key: "PRE-ORDER"
         value: "PRE-ORDER"
@@ -96,24 +100,6 @@ init:
       - key: "ON-ORDER"
         value: "ON-ORDER"
     errorText: "Please select a field"
-    required: true
-    summary: Vehicle category for which ticket needs to be booked
-  - name: "Bank Code"
-    key: "bankCode"
-    type: "text"
-    errorText: "Bank Code is required"
-    required: true
-    summary: Vehicle category for which ticket needs to be booked
-  - name: "Bank Account Number"
-    key: "bankAccountNumber"
-    type: "text"
-    errorText: "Bank Account Number is required"
-    required: true
-    summary: Vehicle category for which ticket needs to be booked
-  - name: "Virtual Payment Address"
-    key: "virtualPaymentAddress"
-    type: "text"
-    errorText: "Virtual Payment Address is required"
     required: true
     summary: Vehicle category for which ticket needs to be booked
   - name: "Payment Tags"
@@ -139,14 +125,32 @@ confirm:
     summary: Vehicle category for which ticket needs to be booked
   - name: "Payment Status"
     key: "paymentStatusConfirm"
-    type: "text"
-    errorText: "Payment Status is required"
+    type: "select"
+    defaultValue: "NOT-PAID"
+    defaultOptions:
+      - key: "PAID"
+        value: "PAID"
+      - key: "NOT-PAID"
+        value: "NOT-PAID"
+    errorText: "Please select a field"
     required: true
     summary: Vehicle category for which ticket needs to be booked
   - name: "Payment Type"
     key: "paymentTypeConfirm"
-    type: "text"
-    errorText: "Payment Type is required"
+    type: "select"
+    defaultValue: "ON-FULFILLMENT"
+    defaultOptions:
+      - key: "PRE-ORDER"
+        value: "PRE-ORDER"
+      - key: "PRE-FULFILLMENT"
+        value: "PRE-FULFILLMENT"
+      - key: "ON-FULFILLMENT"
+        value: "ON-FULFILLMENT"
+      - key: "POST-FULFILLMENT"
+        value: "POST-FULFILLMENT"
+      - key: "ON-ORDER"
+        value: "ON-ORDER"
+    errorText: "Please select a field"
     required: true
     summary: Vehicle category for which ticket needs to be booked
   - name: "Payment Tags"
@@ -154,8 +158,8 @@ confirm:
     type: "multiline"
     defaultValue:
       BUYER_FINDER_FEES:
-        BUYER_FINDER_FEES_TYPE: percent-annualized
-        BUYER_FINDER_FEES_PERCENTAGE: "1"
+        BUYER_FINDER_FEES_TYPE: percent
+        BUYER_FINDER_FEES_PERCENTAGE: "0"
       SETTLEMENT_TERMS:
         DELAY_INTEREST: 2.5
         STATIC_TERMS: "https://bap.credit.becknprotocol.io/personal-banking/loans/personal-loan"

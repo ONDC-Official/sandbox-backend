@@ -4,7 +4,7 @@ search:
     type: "text"
     errorText: "Vehicle category is required"
     required: true
-    summary: Loan category for which ticket needs to be booked
+    summary: This attribute refers to categorizing loans based on whether they are intended for personal use or are meant for invoices.
   - name: "Payment Tags"
     key: "paymentTagsSearch"
     type: "multiline"
@@ -17,7 +17,7 @@ search:
         STATIC_TERMS: "https://bap.credit.becknprotocol.io/personal-banking/loans/personal-loan"
     errorText: "Payment tags is required"
     required: true
-    summary: Vehicle category for which ticket needs to be booked
+    summary: Describes tags
 
 personal_info_form:
   - name: "BPP URI"
@@ -26,20 +26,21 @@ personal_info_form:
     extractionPath: "businessPayload[]{key: bpp_uri, value: bpp_uri}"
     errorText: "BPP URI is required"
     required: true
-    summary: BPP URI is the base url for the seller endpoints
+    summary: The subscriber URL of the Seller App (BPP) is the endpoint that accepts callbacks from the Buyer App (BAP).
   - name: "BPP ID"
     key: "bpp_id"
     type: "select"
     extractionPath: "businessPayload[]{key: bpp_id, value: bpp_id}"
     errorText: "BPP ID is required"
     required: true
-    summary: BPP ID is the uniqure id of the seller
+    summary: It explains the Explains the subscriber of the Seller App (BPP).
   - name: Form Url
     key: personalFormUrl
     type: "form"
     extractionPath: "businessPayload[?(bpp_id === '${bpp_id}')].formData[]{key: formUrl, value: formUrl}"
     extractionPathReplace: "${bpp_id}"
     extractionPathReplaceWith: formData.bpp_id
+    summary: Need to be filled to get the submission id
   - name: "ProviderId"
     key: "providerId"
     type: "select"
@@ -48,7 +49,7 @@ personal_info_form:
     extractionPathReplaceWith: formData.bpp_id
     errorText: "Provider Id is required"
     required: true
-    summary: Provider Id is the uniqure id of the seller
+    summary: This refers to the unique id of the provider whose catalog items have been selected.
   - name: "Form Id"
     key: "formId"
     type: "select"
@@ -93,6 +94,7 @@ loan_amount_adjust_form:
     key: adjustAmountFormUrl
     type: "form"
     extractionPath: "businessPayload[].formData[]{key: formUrl, value: formUrl}"
+    summary: Need to be filled to get the submission id
   - name: "Form Id"
     key: "formIdAmountAdjustForm"
     type: "select"
@@ -114,6 +116,7 @@ kyc_form:
     key: kycFormUrl
     type: "form"
     extractionPath: "businessPayload[].formData[]{key: formUrl, value: formUrl}"
+    summary: Need to be filled to get the submission id
   - name: "Form Id"
     key: "kycFormId"
     type: "select"
@@ -177,6 +180,7 @@ account_details_form:
     key: accointDetailsFormUrl
     type: "form"
     extractionPath: "businessPayload[].formData[]{key: formUrl, value: formUrl}"
+    summary: Need to be filled to get the submission id
   - name: "Form Id"
     key: "accointDetailsFormId"
     type: "select"
@@ -198,6 +202,7 @@ e_mandate_details_form:
     key: eMandateDetailsFormUrl
     type: "form"
     extractionPath: "businessPayload[].formData[]{key: formUrl, value: formUrl}"
+    summary: Need to be filled to get the submission id
   - name: "Form Id"
     key: "eMandateDetailsFormId"
     type: "select"
@@ -219,6 +224,7 @@ loan_agreement_form:
     key: loanAgreementFormUrl
     type: "form"
     extractionPath: "businessPayload[].formData[]{key: formUrl, value: formUrl}"
+    summary: Need to be filled to get the submission id
   - name: "Form Id"
     key: "loanAgreementFormId"
     type: "select"
