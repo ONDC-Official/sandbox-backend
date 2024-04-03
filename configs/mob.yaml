@@ -48,7 +48,7 @@ flows:
       $ref: ./configs/metro-flow-2/protocolCalls.yaml
   - summary: On-Demand - Assign driver on on-confirm
     domain: ONDC:TRV10
-    shouldDispaly: true
+    shouldDispaly: false
     id: ondemand-flow-1
     sessionData:
       version: "2.0.0"
