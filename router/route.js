@@ -36,7 +36,7 @@ router.post("/createHeader", async function (req, res) {
 
 router.post("/:method", async (req, res) => {
   try {
-    const method = req.params.method,
+    var method = req.params.method,
       body = req.body;
     if (
       !body?.context?.bap_uri ||
@@ -63,8 +63,17 @@ router.post("/:method", async (req, res) => {
     }
 
     const header = { headers: { Authorization: await generateHeader(body) } };
-
     insertRequest(body, req.headers);
+    if(method.split("_")[0]==="on"){
+      return res.status(200).send({
+        context:req.body.context,
+        message:{
+          "ack": {
+            "status": "ACK"
+        }
+        }
+      })
+    }
     const response = await axios.post(`${url}${method}`, body, header);
 
     res.status(response.status).send(response.data);
