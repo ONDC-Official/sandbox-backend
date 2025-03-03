@@ -15,11 +15,13 @@ configLoader
     const router = require("./router/route");
 
     const PORT = process.env.PORT;
-    app.use(express.json());
+      app.use(express.json({ limit: '20mb' }));
+
 
     app.use(router);
 
     app.listen(PORT, () => {
+	    console.log("sanbox tracer backend")
       logger.info("server listening at port " + PORT);
     });
   })

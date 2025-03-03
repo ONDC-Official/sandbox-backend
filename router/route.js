@@ -38,7 +38,9 @@ router.post("/:method", async (req, res) => {
   try {
     var method = req.params.method,
       body = req.body;
+    console.log("request received")
     if (
+       body?.context?.domain === null||
       !body?.context?.bap_uri ||
       !body?.context?.transaction_id ||
       (!body?.context?.bpp_uri && req.params.method !== "search")
@@ -100,12 +102,17 @@ router.get("/cache", async (req, res) => {
 });
 
 router.post("/ondc/:method", async (req, res) => {
-  let body = req.body;
+ if(!req?.body?.context?.domain){
+  return res.status(400).send("context values are not proper")
+ }
+	let body = req.body;
 
   logger.info("/ondc/:method message recieved -  ", body);
 
   if (process.env.ENABLE_SIGNATURE_VALIDATION === "true") {
     const isValid = await verifyHeader(req, process.env.LOOKUP_URL);
+
+
     if (isValid) {
       insertRequest(body, req.headers);
       const ack = {
