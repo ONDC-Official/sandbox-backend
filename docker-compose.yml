@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: sandbox_tracer_backend
+    container_name: ${CONTAINER_NAME}
     ports:
       - "${PORT:-3000}:${PORT:-3000}"
     env_file:
