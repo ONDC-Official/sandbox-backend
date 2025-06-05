@@ -1,10 +1,6 @@
-version: "3.8"
-
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: 577638354424.dkr.ecr.ap-south-1.amazonaws.com/trv-sandbox-backend:latest
     container_name: ${CONTAINER_NAME}
     ports:
       - "${PORT:-3000}:${PORT:-3000}"
