@@ -1,6 +1,6 @@
 services:
   app:
-    image: 577638354424.dkr.ecr.ap-south-1.amazonaws.com/trv-sandbox-backend:latest
+    image: 577638354424.dkr.ecr.ap-south-1.amazonaws.com/staging/fis-sandbox-backend:latest
     container_name: ${CONTAINER_NAME}
     ports:
       - "${PORT:-3000}:${PORT:-3000}"
